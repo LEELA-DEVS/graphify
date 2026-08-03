@@ -1,42 +1,18 @@
-<!-- LEELA-DEVS Fork Preamble · D#174 М8 P4 GraphRAG + Leiden community detection · 2026-05-18 -->
+<!-- Fork notice -->
 
-> ## LEELA-DEVS Fork — D#174 М8 P4 GraphRAG + Leiden community detection
+> ## Fork notice
 >
-> This is the **LEELA-DEVS internal fork** of [safishamsi/graphify](https://github.com/safishamsi/graphify) created 2026-05-18 as the canonical L0 source-of-truth locus for LEELA Mandala's Leiden community detection integration (D#174 cycle-3 implementation prerequisite).
+> This is an internal fork of [safishamsi/graphify](https://github.com/safishamsi/graphify), created 2026-05-18 to develop and maintain a Leiden community detection integration for the graph clustering step.
 >
-> **Fork-source pinning (per D#174 cycle-1 spec v0.12 MAJOR-1 resolution):**
-> - Upstream repo: `safishamsi/graphify`
-> - Default branch: `v8`
-> - Pinned HEAD sha at fork-creation: **`a5eb15b8801d41eac0a10ed21440c9dfdba28041`** (2026-05-18T11:09:16Z · "bump version to 0.8.11")
-> - Fork creation: 2026-05-18T11:23:28Z via `gh repo fork safishamsi/graphify --org LEELA-DEVS --default-branch-only`
+> **Pinning:**
+> - Upstream repository: `safishamsi/graphify`, default branch `v8`
+> - Pinned HEAD sha at fork creation: `a5eb15b8801d41eac0a10ed21440c9dfdba28041` (2026-05-18)
 >
-> **CI/release pinning rule (LEELA fork DOES NOT track upstream `main`/`v8` automatically):**
-> - LEELA-DEVS fork tracks **specific upstream release tags only** (e.g. `v0.8.11` pinned)
-> - Upstream changes merged via explicit `gh repo sync` events documented in this README with sha + date
-> - **Anti-drift discipline:** prevents silent upstream API surface changes from breaking LEELA-DEVS Leiden integration patches
+> **Sync policy:** this fork does not track upstream `main`/`v8` automatically. It follows specific upstream release tags only; upstream changes are merged in via explicit `gh repo sync` operations, each recorded here with the sha and date. This avoids a silent upstream API change breaking the Leiden integration patch maintained on top of it.
 >
-> **D#174 cycle-3 deploy ceremony scope** (separate sessions follow this fork-creation Step 1):
-> 1. ✅ Fork creation + upstream HEAD sha pinning + README preamble (this commit · 2026-05-18 PM)
-> 2. Leiden integration patch: graspologic Leiden algorithm + `random_state=42` + `use_modularity=True` + `resolution=1.0` + hierarchy depth 2-3 + `flock(2)` on `graphify-out/.lock` race-mechanism
-> 3. PR + regression tests (backward-compat verification for non-Leiden code paths)
-> 4. `mcp-server/worker.js` deploy in `LEELA-DEVS/shiva`: `shiva_graph_query` inputSchema extension with `level={leaf,community,root}` parameter + handler branches per Q1/Q2/Q3 resolutions
-> 5. Author `scripts/d174-ab-verify.py` + commit N=10 A/B query set per cycle-1 spec v0.12 §5 falsifiability frame
-> 6. A/B verification → PASS gate (≥85% mean reduction · no single query <60%) → S6 closure path
-> 7. Update `grantha/yantra-suchi.md` entry · `niyama/08-darshana-niyama.md` amendment if needed · `shiva_explain_themes` docstring update post-deploy
+> **Integration scope:** Leiden community detection for graph clustering, using [`graspologic`](https://github.com/microsoft/graspologic) (Microsoft Research, BSD-3-Clause) as the primary implementation, with [`leidenalg`](https://github.com/vtraag/leidenalg) as a fallback. Reference: Traag, V.A.; Waltman, L.; van Eck, N.J. (2019). "From Louvain to Leiden: guaranteeing well-connected communities". *Scientific Reports* 9, 5233. [DOI:10.1038/s41598-019-41695-z](https://doi.org/10.1038/s41598-019-41695-z)
 >
-> **Sangati (canonical LEELA decisions):**
-> - [D#174 cycle-1 spec v0.12](https://github.com/LEELA-DEVS/shiva/blob/master/chitta/parikshya/2026-05-17-D174-m8-p4-graphrag-leiden-cycle-1-spec.md) — М8 P4 GraphRAG + Leiden authoritative spec (ratify_state: S5_active)
-> - [D#151 Phase D §4 М8 P4](https://github.com/LEELA-DEVS/shiva/blob/master/sankalpa/decisions/D151-pratyabhijna-mahasamskara.md) — parent decision
-> - [D#150 М8 P4 ADOPT verdict](https://github.com/LEELA-DEVS/shiva/blob/master/chitta/parikshya/2026-05-07-d151-m8-tool-adoption-roadmap-detailed.md) — tool adoption authoritative roadmap (97% reduction claim source)
-> - [K1 chain anchors #122-#176](https://github.com/LEELA-DEVS/shiva/blob/master/chitta/k1-chain-suchi.md) — full D#174 lifecycle audit-trail
-> - [niyama/08 darshana-niyama](https://github.com/LEELA-DEVS/shiva/blob/master/niyama/08-darshana-niyama.md) — graph-first dharma
->
-> **Leiden algorithm canonical reference** (D#174 cycle-1 spec v0.12 §2.1):
-> - Traag, V.A.; Waltman, L.; van Eck, N.J. (2019). "From Louvain to Leiden: guaranteeing well-connected communities". *Scientific Reports* 9, 5233. [DOI:10.1038/s41598-019-41695-z](https://doi.org/10.1038/s41598-019-41695-z)
-> - Library: [`graspologic`](https://github.com/microsoft/graspologic) (Microsoft Research · BSD-3-Clause · Python 3.9+)
-> - Fallback: [`leidenalg`](https://github.com/vtraag/leidenalg) (Vincent Traag original ref-impl · conda-forge)
->
-> **Upstream README preserved below.** Original upstream content (commit `a5eb15b8` v8 branch · `safishamsi/graphify`) follows the horizontal rule.
+> **Upstream README preserved below**, unmodified, following the horizontal rule.
 
 ---
 
